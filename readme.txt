@@ -59,7 +59,19 @@ interfere with the review step.
 = Can I change the labels (Edit / Confirm & Send)? =
 
 Yes. The labels are translatable and can also be customized with the
-`cf7rb_review_labels` filter.
+`cf7rb_review_labels` filter. Example for your theme's functions.php:
+
+```
+add_filter( 'cf7rb_review_labels', function( $labels ) {
+    $labels['confirm'] = 'Send Now';
+    $labels['edit']    = 'Go Back';
+    $labels['heading'] = 'Review your message';
+    return $labels;
+} );
+```
+
+Available labels: `heading`, `intro`, `edit`, `confirm`,
+`error`, `accepted`, `declined`.
 
 == Screenshots ==
 
