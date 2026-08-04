@@ -170,16 +170,20 @@ class CF7RB_Ajax {
 			return false;
 		}
 
-		$start  = isset( $_POST['cf7rb_start'] ) ? (int) $_POST['cf7rb_start'] : 0;
-		$min_ts = (float) apply_filters( 'cf7rb_min_submit_seconds', 2.5 );
+		$start = isset( $_POST['cf7rb_start'] ) ? (int) $_POST['cf7rb_start'] : 0;
 
 		if ( $start <= 0 ) {
 			return false;
 		}
 
+		$min_ts  = (float) apply_filters( 'cf7rb_min_submit_seconds', 1.0 );
 		$elapsed = microtime( true ) - ( $start / 1000 );
 
-		if ( $elapsed < $min_ts || $elapsed > CF7RB_Session::TTL ) {
+		if ( $elapsed < 0 ) {
+			return true;
+		}
+
+		if ( $elapsed < $min_ts ) {
 			return false;
 		}
 

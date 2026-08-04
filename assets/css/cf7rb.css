@@ -78,14 +78,3 @@
 .cf7rb-message {
 	color: #333;
 }
-
-.cf7rb-btn:disabled {
-	opacity: 0.55;
-	cursor: not-allowed;
-}
-
-.cf7rb-btn-primary:disabled:hover {
-	background: #2271b1;
-	border-color: #2271b1;
-	color: #fff;
-}

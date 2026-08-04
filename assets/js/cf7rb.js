@@ -53,6 +53,52 @@
 		summary.style.display = 'block';
 	}
 
+	function getSchema(formId) {
+		try {
+			if (!window.wpcf7 || !window.wpcf7.schemas) {
+				return null;
+			}
+
+			return window.wpcf7.schemas.get(String(formId)) || null;
+		} catch (error) {
+			return null;
+		}
+	}
+
+	function validateForm(form, formId) {
+		var schema = getSchema(formId);
+
+		if (!schema || !schema.rules || typeof window.swv === 'undefined') {
+			return null;
+		}
+
+		var result;
+
+		try {
+			result = swv.validate(schema, new FormData(form), {});
+		} catch (error) {
+			return null;
+		}
+
+		if (result && result.size > 0) {
+			renderNativeErrors(form);
+
+			return false;
+		}
+
+		return true;
+	}
+
+	function renderNativeErrors(form) {
+		if (window.wpcf7 && typeof window.wpcf7.validate === 'function') {
+			try {
+				window.wpcf7.validate(form, {});
+			} catch (error) {
+				return;
+			}
+		}
+	}
+
 	function doReview(form, summary, state) {
 		var formId = state.formId;
 		var submitBtn = form.querySelector('.wpcf7-submit');
@@ -95,17 +141,16 @@
 					return;
 				}
 
+				if (data.data.invalid && data.data.invalid.length) {
+					renderNativeErrors(form);
+
+					return;
+				}
+
 				state.token = data.data.token;
 				state.files = data.data.files || {};
 
 				summary.innerHTML = data.data.summary;
-
-				var confirmBtn = summary.querySelector('.cf7rb-confirm');
-
-				if (confirmBtn) {
-					confirmBtn.disabled = (data.data.invalid || []).length > 0;
-				}
-
 				form.style.display = 'none';
 				summary.style.display = 'block';
 			})
@@ -232,6 +277,26 @@
 
 					event.preventDefault();
 					event.stopPropagation();
+
+					var valid = validateForm(form, formId);
+
+					if (valid === false) {
+						return;
+					}
+
+					if (valid === null) {
+						setTimeout(function () {
+							var retried = validateForm(form, formId);
+
+							if (retried === false) {
+								return;
+							}
+
+							doReview(form, summary, state);
+						}, 300);
+
+						return;
+					}
 
 					doReview(form, summary, state);
 				},

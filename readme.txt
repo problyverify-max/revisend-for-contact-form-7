@@ -4,7 +4,7 @@ Tags: contact form 7, confirm, review, multi-step, spam
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,14 @@ with the confirm step. Add-ons that hijack the submit button itself may
 interfere with the review step.
 
 == Changelog ==
+
+= 0.1.5 =
+* Change: the review step now runs after Contact Form 7's native validation.
+  Invalid forms show CF7's own per-field messages; the preview is shown only
+  when the form is valid. No custom validation messages are used.
+* Fix: the minimum submit time is reduced to 1 second, future timestamps are
+  accepted (clock skew), and the maximum page-open time limit is removed, so
+  legitimate submissions are never rejected.
 
 = 0.1.4 =
 * Change: the review step is always shown. Missing required fields appear as
