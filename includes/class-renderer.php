@@ -28,11 +28,9 @@ class CF7RB_Renderer {
 			'intro'    => __( 'Please check the information below before sending.', 'review-before-send-for-contact-form-7' ),
 			'edit'     => __( 'Edit', 'review-before-send-for-contact-form-7' ),
 			'confirm'  => __( 'Confirm &amp; Send', 'review-before-send-for-contact-form-7' ),
-			'files'    => __( 'Files', 'review-before-send-for-contact-form-7' ),
 			'error'    => __( 'Something went wrong. Please try again.', 'review-before-send-for-contact-form-7' ),
 			'accepted' => __( 'Yes', 'review-before-send-for-contact-form-7' ),
 			'declined' => __( 'No', 'review-before-send-for-contact-form-7' ),
-			'fileNote' => __( 'File selected', 'review-before-send-for-contact-form-7' ),
 		);
 
 		return apply_filters( 'cf7rb_review_labels', $labels );
