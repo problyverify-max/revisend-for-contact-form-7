@@ -4,6 +4,7 @@
 	background: #fafafa;
 	border: 1px solid #ddd;
 	border-radius: 4px;
+	overflow-wrap: break-word;
 }
 
 .cf7rb-heading {
@@ -31,6 +32,8 @@
 
 .cf7rb-fields dd {
 	margin: 0.15em 0 0;
+	overflow-wrap: anywhere;
+	word-break: break-word;
 }
 
 .cf7rb-empty {
