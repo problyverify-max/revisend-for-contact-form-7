@@ -3,7 +3,7 @@
  * Plugin Name:       CF7 Review Before Send
  * Plugin URI:        https://github.com/slobostep/cf7-review-before-send
  * Description:       Adds a review-and-confirm step to Contact Form 7 forms before the mail is sent. Built-in honeypot and time-trap spam protection.
- * Version:           0.1.3
+ * Version:           0.1.4
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Slobodan Stepic
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CF7RB_VERSION', '0.1.3' );
+define( 'CF7RB_VERSION', '0.1.4' );
 define( 'CF7RB_PLUGIN_FILE', __FILE__ );
 define( 'CF7RB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CF7RB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

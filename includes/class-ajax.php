@@ -45,17 +45,9 @@ class CF7RB_Ajax {
 
 		$validation = self::validate_fields( $form );
 
-		if ( ! $validation->is_valid() ) {
-			$invalid = $validation->get_invalid_fields();
-			$first   = reset( $invalid );
-
-			wp_send_json_error(
-				array(
-					'message' => isset( $first['reason'] ) ? $first['reason'] : CF7RB_Renderer::labels()['error'],
-					'fields'  => array_keys( $invalid ),
-				)
-			);
-		}
+		$invalid = $validation->is_valid()
+			? array()
+			: array_keys( $validation->get_invalid_fields() );
 
 		$posted = wp_unslash( (array) $_POST );
 
@@ -88,6 +80,7 @@ class CF7RB_Ajax {
 				'token'   => $token,
 				'summary' => CF7RB_Renderer::render_summary( $rows, $labels ),
 				'files'   => $file_names,
+				'invalid' => $invalid,
 			)
 		);
 	}

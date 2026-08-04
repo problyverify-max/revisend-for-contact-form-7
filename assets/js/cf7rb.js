@@ -32,29 +32,6 @@
 		});
 	}
 
-	function clearInvalid(form) {
-		form.querySelectorAll('.cf7rb-invalid').forEach(function (el) {
-			el.classList.remove('cf7rb-invalid');
-		});
-	}
-
-	function showInvalid(form, name) {
-		var selector = '.wpcf7-form-control-wrap[data-name="' + window.CSS.escape(name) + '"]';
-		var wrap = form.querySelector(selector);
-
-		if (!wrap) {
-			return;
-		}
-
-		wrap.classList.add('cf7rb-invalid');
-
-		var input = wrap.querySelector('input, textarea, select');
-
-		if (input && input.focus) {
-			input.focus();
-		}
-	}
-
 	function makeSummary() {
 		var el = document.createElement('div');
 
@@ -76,35 +53,6 @@
 		summary.style.display = 'block';
 	}
 
-	function validateForm(form, formId) {
-		try {
-			if (!window.swv || !window.wpcf7 || !window.wpcf7.schemas) {
-				return null;
-			}
-
-			var schema = window.wpcf7.schemas.get(String(formId));
-
-			if (!schema || !schema.rules) {
-				return null;
-			}
-
-			var result = swv.validate(schema, new FormData(form), {});
-
-			if (!result || result.size === 0) {
-				return null;
-			}
-
-			var first = result.entries().next().value;
-
-			return {
-				name: first[0],
-				error: first[1] && first[1].error
-			};
-		} catch (error) {
-			return null;
-		}
-	}
-
 	function doReview(form, summary, state) {
 		var formId = state.formId;
 		var submitBtn = form.querySelector('.wpcf7-submit');
@@ -114,20 +62,6 @@
 		}
 
 		removeInjected(form);
-		clearInvalid(form);
-
-		var invalid = validateForm(form, formId);
-
-		if (invalid) {
-			if (submitBtn) {
-				submitBtn.disabled = false;
-			}
-
-			showInvalid(form, invalid.name);
-			showMessage(summary, invalid.error || cfg.labels.error, true);
-
-			return;
-		}
 
 		var fd = new FormData();
 		var original = new FormData(form);
@@ -156,10 +90,6 @@
 				}
 
 				if (!data.success) {
-					if (data.data && data.data.fields && data.data.fields.length) {
-						showInvalid(form, data.data.fields[0]);
-					}
-
 					showMessage(summary, (data.data && data.data.message) || cfg.labels.error, true);
 
 					return;
@@ -169,6 +99,13 @@
 				state.files = data.data.files || {};
 
 				summary.innerHTML = data.data.summary;
+
+				var confirmBtn = summary.querySelector('.cf7rb-confirm');
+
+				if (confirmBtn) {
+					confirmBtn.disabled = (data.data.invalid || []).length > 0;
+				}
+
 				form.style.display = 'none';
 				summary.style.display = 'block';
 			})

@@ -4,7 +4,7 @@ Tags: contact form 7, confirm, review, multi-step, spam
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 0.1.3
+Stable tag: 0.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,12 @@ with the confirm step. Add-ons that hijack the submit button itself may
 interfere with the review step.
 
 == Changelog ==
+
+= 0.1.4 =
+* Change: the review step is always shown. Missing required fields appear as
+  "—" in the preview and the confirm button stays disabled until the form is
+  valid. Contact Form 7's native validation is used on confirmation — no
+  custom validation messages are shown.
 
 = 0.1.3 =
 * Fix: temporary upload folders are now fully removed after the mail is sent.

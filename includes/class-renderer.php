@@ -62,6 +62,11 @@ class CF7RB_Renderer {
 						'label' => $label,
 						'value' => $files[ $name ]['orig'],
 					);
+				} elseif ( $tag->is_required() ) {
+					$rows[] = array(
+						'label' => $label,
+						'value' => '—',
+					);
 				}
 
 				continue;
@@ -82,6 +87,13 @@ class CF7RB_Renderer {
 			$value = trim( (string) $value );
 
 			if ( '' === $value ) {
+				if ( $tag->is_required() ) {
+					$rows[] = array(
+						'label' => $label,
+						'value' => '—',
+					);
+				}
+
 				continue;
 			}
 

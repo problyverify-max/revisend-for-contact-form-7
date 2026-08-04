@@ -79,10 +79,13 @@
 	color: #333;
 }
 
-.cf7rb-summary .cf7rb-invalid,
-.wpcf7-form-control-wrap.cf7rb-invalid input,
-.wpcf7-form-control-wrap.cf7rb-invalid textarea,
-.wpcf7-form-control-wrap.cf7rb-invalid select {
-	border-color: #b32d2e;
-	outline-color: #b32d2e;
+.cf7rb-btn:disabled {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+
+.cf7rb-btn-primary:disabled:hover {
+	background: #2271b1;
+	border-color: #2271b1;
+	color: #fff;
 }
