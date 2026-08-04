@@ -1,0 +1,88 @@
+.cf7rb-summary {
+	margin: 1em 0;
+	padding: 1.25em 1.5em;
+	background: #fafafa;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.cf7rb-heading {
+	margin: 0 0 0.25em;
+	font-size: 1.1em;
+}
+
+.cf7rb-intro {
+	margin: 0 0 1em;
+	color: #555;
+}
+
+.cf7rb-fields {
+	margin: 0;
+}
+
+.cf7rb-fields dt {
+	font-weight: 600;
+	margin-top: 0.6em;
+}
+
+.cf7rb-fields dt:first-child {
+	margin-top: 0;
+}
+
+.cf7rb-fields dd {
+	margin: 0.15em 0 0;
+}
+
+.cf7rb-empty {
+	color: #555;
+}
+
+.cf7rb-actions {
+	display: flex;
+	gap: 0.75em;
+	margin-top: 1.25em;
+}
+
+.cf7rb-btn {
+	display: inline-block;
+	padding: 0.6em 1.4em;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #fff;
+	color: #333;
+	cursor: pointer;
+	font: inherit;
+	line-height: 1.4;
+}
+
+.cf7rb-btn:hover {
+	border-color: #999;
+}
+
+.cf7rb-btn-primary {
+	background: #2271b1;
+	border-color: #2271b1;
+	color: #fff;
+}
+
+.cf7rb-btn-primary:hover {
+	background: #135e96;
+	border-color: #135e96;
+	color: #fff;
+}
+
+.cf7rb-error {
+	color: #b32d2e;
+}
+
+.cf7rb-message {
+	color: #333;
+}
+
+.cf7rb-summary .cf7rb-invalid,
+.wpcf7-form-control-wrap.cf7rb-invalid input,
+.wpcf7-form-control-wrap.cf7rb-invalid textarea,
+.wpcf7-form-control-wrap.cf7rb-invalid select {
+	border-color: #b32d2e;
+	outline-color: #b32d2e;
+}
