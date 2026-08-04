@@ -32,7 +32,7 @@ cf7-review-before-send/
 
 | Hook | Type | Description |
 |------|------|-------------|
-| `cf7rb_review_labels` | filter | Override button/text labels (`heading`, `intro`, `edit`, `confirm`, `files`, `error`, `accepted`, `declined`, `fileNote`) |
+| `cf7rb_review_labels` | filter | Override button/text labels (`heading`, `intro`, `edit`, `confirm`, `error`, `accepted`, `declined`) |
 | `cf7rb_min_submit_seconds` | filter | Minimum time in seconds before form can be submitted (default `1.0`) |
 
 ## Key Classes
@@ -45,13 +45,13 @@ cf7-review-before-send/
 ## Git Rules
 
 - **NEVER** commit or push directly to `main`
+- **AI NEVER merges** — only the repository owner does that manually on GitHub
 - Always create a new branch from latest `main` before any work: `feature/xxx`, `fix/xxx`, `docs/xxx`
 - Run `git pull origin main` before branching off
 - Always run `git status` and `git diff` first to show what will be committed
 - Wait for explicit approval before `git add` + `git commit`
 - Before push, suggest a PR title and description for the user to copy-paste
 - Wait for explicit approval before pushing
-- Only the repository owner merges into `main`
 - No force-push
 
 ## Build / Deploy
@@ -61,7 +61,8 @@ cf7-review-before-send/
 - Update version in:
   - `review-before-send-for-contact-form-7.php` (header + `CF7RB_VERSION`)
   - `readme.txt` (`Stable tag:`)
-- After version bump, create ZIP: `zip -r review-before-send-for-contact-form-7-{version}.zip cf7-review-before-send/`
+- After version bump, create ZIP from parent directory:
+  `zip -r review-before-send-for-contact-form-7-{version}.zip cf7-review-before-send/ -x "cf7-review-before-send/.git/*" "cf7-review-before-send/.gitignore" "cf7-review-before-send/AGENTS.md"`
 
 ## Conventions
 

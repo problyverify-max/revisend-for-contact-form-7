@@ -81,7 +81,7 @@ class CF7RB_Session {
 	public static function rel_path( $absolute ) {
 		$content = trailingslashit( WP_CONTENT_DIR );
 
-		return str_starts_with( $absolute, $content ) ? substr( $absolute, strlen( $content ) ) : '';
+		return 0 === strpos( $absolute, $content ) ? substr( $absolute, strlen( $content ) ) : '';
 	}
 
 	private static function protect( $dir ) {
