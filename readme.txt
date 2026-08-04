@@ -4,7 +4,7 @@ Tags: contact form 7, confirm, review, review before send, confirm step, multi-s
 Requires at least: 6.7
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.1.5
+Stable tag: 0.1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,6 +62,10 @@ Yes. The labels are translatable and can also be customized with the
 `cf7rb_review_labels` filter.
 
 == Changelog ==
+
+= 0.1.6 =
+* Change: on screens narrower than 480px the Edit and Confirm buttons are
+  stacked full-width for easier tapping.
 
 = 0.1.5 =
 * Change: the review step now runs after Contact Form 7's native validation.

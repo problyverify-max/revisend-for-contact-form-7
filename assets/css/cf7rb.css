@@ -39,6 +39,7 @@
 
 .cf7rb-actions {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 0.75em;
 	margin-top: 1.25em;
 }
@@ -69,6 +70,18 @@
 	background: #135e96;
 	border-color: #135e96;
 	color: #fff;
+}
+
+@media (max-width: 480px) {
+	.cf7rb-actions {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.cf7rb-btn {
+		width: 100%;
+		text-align: center;
+	}
 }
 
 .cf7rb-error {
