@@ -1,27 +1,35 @@
 === CF7 Review Before Send ===
 Contributors: slobostep
-Tags: contact form 7, confirm, review, multi-step, spam
-Requires at least: 6.0
-Tested up to: 6.7
+Tags: contact form 7, confirm, review, review before send, confirm step, multi-step, spam protection
+Requires at least: 6.7
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds a review-and-confirm step to Contact Form 7 forms before the mail is sent.
+Adds a review-and-confirm step to Contact Form 7 forms. Visitors see a summary of what they typed and confirm before the mail is sent.
 
 == Description ==
 
 Contact Form 7 is the most popular form plugin on WordPress, but it sends the
 mail the moment the visitor clicks the submit button. CF7 Review Before Send
-adds an optional confirmation step: the visitor sees a summary of what they
-typed and must confirm before the form is actually submitted.
+adds an optional confirmation step: after the form passes Contact Form 7's
+native validation, the visitor sees a summary of what they typed and must
+click "Confirm & Send" before the form is actually submitted. If they spot a
+mistake, they can go back with "Edit".
 
-* Per-form toggle: enable the review step only on the forms you want.
-* One-time token prevents double submissions.
-* File uploads are preserved between the review step and the final submit.
-* Built-in spam protection: honeypot field + minimum-fill-time check.
-* No jQuery, no external services, translation-ready.
+= Why use it? =
+
+* **Reduce mistakes** — visitors can review their input before it is sent.
+* **Native CF7 validation** — required-field and format messages are shown
+  exactly as Contact Form 7 normally shows them, before the review step.
+* **Per-form toggle** — enable the review step only on the forms you want.
+* **One-time token** — prevents double submissions and bypass attempts.
+* **File uploads supported** — files are preserved between the review step
+  and the confirmed submit, then attached to the mail.
+* **Built-in spam protection** — honeypot field and minimum-fill-time check.
+* **Lightweight** — no jQuery, no external services, translation-ready.
 
 == Installation ==
 
@@ -47,6 +55,11 @@ submissions without a confirmation token are blocked.
 Anything that hooks into the standard Contact Form 7 submission flow works
 with the confirm step. Add-ons that hijack the submit button itself may
 interfere with the review step.
+
+= Can I change the labels (Edit / Confirm & Send)? =
+
+Yes. The labels are translatable and can also be customized with the
+`cf7rb_review_labels` filter.
 
 == Changelog ==
 

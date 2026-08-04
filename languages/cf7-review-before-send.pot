@@ -1,0 +1,88 @@
+# Copyright (C) 2026 Slobodan Stepic
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: CF7 Review Before Send 0.1.5\n"
+"Report-Msgid-Bugs-To: https://github.com/slobostep/cf7-review-before-send/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+"X-Generator: custom pot script\n"
+
+#: includes/class-settings.php
+msgid "CF7 Review Before Send"
+msgstr ""
+
+#: cf7-review-before-send.php
+msgid "CF7 Review Before Send requires the Contact Form 7 plugin to be installed and active."
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "Confirm &amp; Send"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Confirmation step"
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "Edit"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Enable review step"
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "File selected"
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "Files"
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "No"
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "No data to review."
+msgstr ""
+
+#: includes/class-ajax.php
+msgid "One of the uploaded files is too large or has an invalid type."
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "Please check the information below before sending."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Review Before Send"
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "Review your submission"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Show a review step before this form is sent"
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Visitors will see a summary of their input and must confirm before the form is submitted."
+msgstr ""
+
+#: includes/class-renderer.php
+msgid "Yes"
+msgstr ""
+
+#: includes/class-ajax.php
+msgid "Your submission was not confirmed. Please submit the form again using the confirmation step."
+msgstr ""
+
