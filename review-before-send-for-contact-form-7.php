@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Review Before Send for Contact Form 7
- * Plugin URI:        https://github.com/slobostep/cf7-review-before-send
+ * Plugin URI:        https://github.com/slobostep/review-before-send-for-contact-form-7
  * Description:       Adds a review-and-confirm step to Contact Form 7 forms before the mail is sent. Built-in honeypot and time-trap spam protection.
  * Version:           0.1.9
  * Requires at least: 6.7

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Review Before Send for Contact Form 7 0.1.9\n"
-"Report-Msgid-Bugs-To: https://github.com/slobostep/cf7-review-before-send/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/slobostep/review-before-send-for-contact-form-7/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
