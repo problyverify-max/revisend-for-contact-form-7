@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name:       CF7 Review Before Send
+ * Plugin Name:       Review Before Send for Contact Form 7
  * Plugin URI:        https://github.com/slobostep/cf7-review-before-send
  * Description:       Adds a review-and-confirm step to Contact Form 7 forms before the mail is sent. Built-in honeypot and time-trap spam protection.
- * Version:           0.1.7
- * Requires at least: 6.0
+ * Version:           0.1.9
+ * Requires at least: 6.7
  * Requires PHP:      7.4
  * Author:            Slobodan Stepic
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       cf7-review-before-send
+ * Text Domain:       review-before-send-for-contact-form-7
  * Domain Path:       /languages
  */
 
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CF7RB_VERSION', '0.1.7' );
+define( 'CF7RB_VERSION', '0.1.9' );
 define( 'CF7RB_PLUGIN_FILE', __FILE__ );
 define( 'CF7RB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CF7RB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -34,18 +34,29 @@ function cf7rb_init() {
 		return;
 	}
 
-	load_plugin_textdomain( 'cf7-review-before-send', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'review-before-send-for-contact-form-7', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 	CF7RB_Settings::register();
 	CF7RB_Ajax::register();
 
 	add_action( 'wp_enqueue_scripts', 'cf7rb_enqueue_assets' );
 	add_filter( 'wpcf7_form_hidden_fields', 'cf7rb_add_hidden_fields', 10, 1 );
+	add_filter( 'wpcf7_form_class_attr', 'cf7rb_add_form_class', 10, 1 );
+}
+
+function cf7rb_add_form_class( $class ) {
+	$form = wpcf7_get_current_contact_form();
+
+	if ( $form && CF7RB_Settings::is_enabled( $form->id() ) ) {
+		$class .= ' cf7rb-form';
+	}
+
+	return $class;
 }
 
 function cf7rb_missing_cf7_notice() {
 	echo '<div class="notice notice-warning"><p>';
-	echo esc_html__( 'CF7 Review Before Send requires the Contact Form 7 plugin to be installed and active.', 'cf7-review-before-send' );
+	echo esc_html__( 'Review Before Send for Contact Form 7 requires the Contact Form 7 plugin to be installed and active.', 'review-before-send-for-contact-form-7' );
 	echo '</p></div>';
 }
 

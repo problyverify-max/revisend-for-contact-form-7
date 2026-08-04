@@ -85,6 +85,59 @@
 		width: 100%;
 		text-align: center;
 	}
+
+	.cf7rb-summary {
+		padding: 0.9em 1em;
+	}
+
+	.cf7rb-heading {
+		font-size: 1.05em;
+	}
+
+	.cf7rb-fields dt {
+		margin-top: 0.5em;
+	}
+
+	form.cf7rb-form {
+		font-size: 0.9em;
+		line-height: 1.5;
+	}
+
+	form.cf7rb-form label {
+		font-size: 0.95em;
+		display: block;
+		margin-bottom: 0.2em;
+	}
+
+	form.cf7rb-form .wpcf7-form-control-wrap {
+		display: block;
+		margin-bottom: 0.75em;
+	}
+
+	form.cf7rb-form input[type="text"],
+	form.cf7rb-form input[type="email"],
+	form.cf7rb-form input[type="url"],
+	form.cf7rb-form input[type="tel"],
+	form.cf7rb-form input[type="number"],
+	form.cf7rb-form input[type="date"],
+	form.cf7rb-form select,
+	form.cf7rb-form textarea {
+		width: 100%;
+		max-width: 100%;
+		box-sizing: border-box;
+		font-size: 16px;
+		padding: 0.55em 0.75em;
+	}
+
+	form.cf7rb-form .wpcf7-submit {
+		width: 100%;
+		padding: 0.75em 1.1em;
+	}
+
+	form.cf7rb-form .wpcf7-response-output {
+		margin: 0.5em 0 1em;
+		padding: 0.6em 1em;
+	}
 }
 
 .cf7rb-error {

@@ -35,7 +35,7 @@ $wpdb->query(
 );
 
 $uploads = wp_upload_dir();
-$dir     = trailingslashit( $uploads['basedir'] ) . 'cf7-review-before-send';
+$dir     = trailingslashit( $uploads['basedir'] ) . 'review-before-send-for-contact-form-7';
 
 if ( is_dir( $dir ) ) {
 	foreach ( glob( trailingslashit( $dir ) . '*' ) as $entry ) {

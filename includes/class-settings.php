@@ -15,7 +15,7 @@ class CF7RB_Settings {
 
 	public static function add_panel( $panels ) {
 		$panels['cf7rb-panel'] = array(
-			'title'    => __( 'Review Before Send', 'cf7-review-before-send' ),
+			'title'    => __( 'Review Before Send', 'review-before-send-for-contact-form-7' ),
 			'callback' => array( __CLASS__, 'render_panel' ),
 		);
 
@@ -25,16 +25,16 @@ class CF7RB_Settings {
 	public static function render_panel( $contact_form ) {
 		$enabled = self::is_enabled( $contact_form->id() );
 		?>
-		<h2><?php echo esc_html__( 'CF7 Review Before Send', 'cf7-review-before-send' ); ?></h2>
+		<h2><?php echo esc_html__( 'Review Before Send for Contact Form 7', 'review-before-send-for-contact-form-7' ); ?></h2>
 
 		<fieldset>
-			<legend><?php echo esc_html__( 'Confirmation step', 'cf7-review-before-send' ); ?></legend>
+			<legend><?php echo esc_html__( 'Confirmation step', 'review-before-send-for-contact-form-7' ); ?></legend>
 
 			<table class="form-table" role="presentation">
 				<tbody>
 					<tr>
 						<th scope="row">
-							<?php echo esc_html__( 'Enable review step', 'cf7-review-before-send' ); ?>
+							<?php echo esc_html__( 'Enable review step', 'review-before-send-for-contact-form-7' ); ?>
 						</th>
 						<td>
 							<label for="cf7rb-enable">
@@ -45,11 +45,11 @@ class CF7RB_Settings {
 									value="1"
 									<?php checked( $enabled ); ?>
 								/>
-								<?php echo esc_html__( 'Show a review step before this form is sent', 'cf7-review-before-send' ); ?>
+								<?php echo esc_html__( 'Show a review step before this form is sent', 'review-before-send-for-contact-form-7' ); ?>
 							</label>
 
 							<p class="description">
-								<?php echo esc_html__( 'Visitors will see a summary of their input and must confirm before the form is submitted.', 'cf7-review-before-send' ); ?>
+								<?php echo esc_html__( 'Visitors will see a summary of their input and must confirm before the form is submitted.', 'review-before-send-for-contact-form-7' ); ?>
 							</p>
 						</td>
 					</tr>

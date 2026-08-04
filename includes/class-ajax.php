@@ -57,7 +57,7 @@ class CF7RB_Ajax {
 		if ( false === $files ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'One of the uploaded files is too large or has an invalid type.', 'cf7-review-before-send' ),
+					'message' => __( 'One of the uploaded files is too large or has an invalid type.', 'review-before-send-for-contact-form-7' ),
 				)
 			);
 		}
@@ -100,7 +100,7 @@ class CF7RB_Ajax {
 			$abort = true;
 
 			$submission->set_response(
-				__( 'Your submission was not confirmed. Please submit the form again using the confirmation step.', 'cf7-review-before-send' )
+				__( 'Your submission was not confirmed. Please submit the form again using the confirmation step.', 'review-before-send-for-contact-form-7' )
 			);
 
 			return;

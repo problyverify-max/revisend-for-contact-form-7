@@ -24,15 +24,15 @@ class CF7RB_Renderer {
 
 	public static function labels() {
 		$labels = array(
-			'heading'  => __( 'Review your submission', 'cf7-review-before-send' ),
-			'intro'    => __( 'Please check the information below before sending.', 'cf7-review-before-send' ),
-			'edit'     => __( 'Edit', 'cf7-review-before-send' ),
-			'confirm'  => __( 'Confirm &amp; Send', 'cf7-review-before-send' ),
-			'files'    => __( 'Files', 'cf7-review-before-send' ),
-			'error'    => __( 'Something went wrong. Please try again.', 'cf7-review-before-send' ),
-			'accepted' => __( 'Yes', 'cf7-review-before-send' ),
-			'declined' => __( 'No', 'cf7-review-before-send' ),
-			'fileNote' => __( 'File selected', 'cf7-review-before-send' ),
+			'heading'  => __( 'Review your submission', 'review-before-send-for-contact-form-7' ),
+			'intro'    => __( 'Please check the information below before sending.', 'review-before-send-for-contact-form-7' ),
+			'edit'     => __( 'Edit', 'review-before-send-for-contact-form-7' ),
+			'confirm'  => __( 'Confirm &amp; Send', 'review-before-send-for-contact-form-7' ),
+			'files'    => __( 'Files', 'review-before-send-for-contact-form-7' ),
+			'error'    => __( 'Something went wrong. Please try again.', 'review-before-send-for-contact-form-7' ),
+			'accepted' => __( 'Yes', 'review-before-send-for-contact-form-7' ),
+			'declined' => __( 'No', 'review-before-send-for-contact-form-7' ),
+			'fileNote' => __( 'File selected', 'review-before-send-for-contact-form-7' ),
 		);
 
 		return apply_filters( 'cf7rb_review_labels', $labels );
@@ -105,7 +105,7 @@ class CF7RB_Renderer {
 		$html .= '<p class="cf7rb-intro">' . $intro . '</p>';
 
 		if ( empty( $rows ) ) {
-			$html .= '<p class="cf7rb-empty">' . esc_html__( 'No data to review.', 'cf7-review-before-send' ) . '</p>';
+			$html .= '<p class="cf7rb-empty">' . esc_html__( 'No data to review.', 'review-before-send-for-contact-form-7' ) . '</p>';
 		} else {
 			$html .= '<dl class="cf7rb-fields">';
 
