@@ -160,10 +160,13 @@ class CF7RB_Ajax {
 		);
 
 		foreach ( $tags as $tag ) {
-			$type   = $tag->type;
+			$type = $tag->type;
+
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- invoking Contact Form 7's own documented validation hooks.
 			$result = apply_filters( "wpcf7_validate_{$type}", $result, $tag );
 		}
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- invoking Contact Form 7's own documented validation hook.
 		return apply_filters( 'wpcf7_validate', $result, $tags );
 	}
 
