@@ -63,6 +63,10 @@ cf7-review-before-send/
   - `readme.txt` (`Stable tag:`)
 - After version bump, create ZIP from parent directory:
   `zip -r review-before-send-for-contact-form-7-{version}.zip cf7-review-before-send/ -x "cf7-review-before-send/.git/*" "cf7-review-before-send/.gitignore" "cf7-review-before-send/AGENTS.md"`
+- **Windows:** do NOT use PowerShell `Compress-Archive` — it stores paths with
+  backslashes and WordPress fails to extract the plugin ("Plugin file does not
+  exist"). Use Python instead:
+  `python -c "import shutil; shutil.make_archive('review-before-send-for-contact-form-7-{version}', 'zip', '.', 'cf7-review-before-send')"`
 
 ## Conventions
 
