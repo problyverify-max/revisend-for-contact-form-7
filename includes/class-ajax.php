@@ -90,9 +90,11 @@ class CF7RB_Ajax {
 			return;
 		}
 
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- the form submission nonce is verified by Contact Form 7 itself.
 		$token = isset( $_POST['cf7rb_token'] )
 			? sanitize_text_field( wp_unslash( $_POST['cf7rb_token'] ) )
 			: '';
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		$data = $token ? CF7RB_Session::consume( $token ) : null;
 
@@ -166,11 +168,15 @@ class CF7RB_Ajax {
 	}
 
 	private static function passes_spam_checks() {
-		if ( ! isset( $_POST['cf7rb_hp'] ) || '' !== (string) $_POST['cf7rb_hp'] ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce is verified via check_ajax_referer() in review() before this check runs.
+		$honeypot = isset( $_POST['cf7rb_hp'] ) ? sanitize_text_field( wp_unslash( $_POST['cf7rb_hp'] ) ) : '';
+
+		if ( '' !== $honeypot ) {
 			return false;
 		}
 
-		$start = isset( $_POST['cf7rb_start'] ) ? (int) $_POST['cf7rb_start'] : 0;
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce is verified via check_ajax_referer() in review() before this check runs.
+		$start = isset( $_POST['cf7rb_start'] ) ? absint( $_POST['cf7rb_start'] ) : 0;
 
 		if ( $start <= 0 ) {
 			return false;
@@ -191,6 +197,7 @@ class CF7RB_Ajax {
 	}
 
 	private static function collect_files( $form ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput -- file upload data is binary and cannot be sanitized; nonce is verified via check_ajax_referer() in review().
 		$files = array();
 
 		$tags = $form->scan_form_tags(
@@ -231,6 +238,7 @@ class CF7RB_Ajax {
 			$orig = sanitize_file_name( wp_basename( $file['name'] ) );
 			$name = wp_unique_filename( $dir, $orig );
 
+			// phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- move_uploaded_file is the only secure way to relocate an uploaded file; WordPress has no equivalent for custom upload directories.
 			if ( ! move_uploaded_file( $file['tmp_name'], trailingslashit( $dir ) . $name ) ) {
 				return false;
 			}
@@ -240,6 +248,7 @@ class CF7RB_Ajax {
 				'orig' => $orig,
 			);
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput
 
 		return $files;
 	}

@@ -6,7 +6,7 @@
  * Version:           0.1.9
  * Requires at least: 6.7
  * Requires PHP:      7.4
- * Author:            Slobodan Stepic
+ * Author:            Slobodan Radosavljevic
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       review-before-send-for-contact-form-7
@@ -33,8 +33,6 @@ function cf7rb_init() {
 		add_action( 'admin_notices', 'cf7rb_missing_cf7_notice' );
 		return;
 	}
-
-	load_plugin_textdomain( 'review-before-send-for-contact-form-7', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 	CF7RB_Settings::register();
 	CF7RB_Ajax::register();

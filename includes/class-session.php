@@ -58,7 +58,7 @@ class CF7RB_Session {
 		$base = trailingslashit( $basedir['basedir'] ) . 'review-before-send-for-contact-form-7';
 		wp_mkdir_p( $base );
 
-		if ( ! is_writable( $base ) ) {
+		if ( ! wp_is_writable( $base ) ) {
 			return '';
 		}
 
@@ -103,7 +103,7 @@ class CF7RB_Session {
 			$path = trailingslashit( WP_CONTENT_DIR ) . $file['rel'];
 
 			if ( wpcf7_is_file_path_in_content_dir( $path ) && is_file( $path ) ) {
-				@unlink( $path );
+				wp_delete_file( $path );
 			}
 
 			$dir = dirname( $path );
@@ -113,10 +113,11 @@ class CF7RB_Session {
 					$extra_path = trailingslashit( $dir ) . $extra;
 
 					if ( is_file( $extra_path ) ) {
-						@unlink( $extra_path );
+						wp_delete_file( $extra_path );
 					}
 				}
 
+				// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- WordPress has no native alternative for removing directories.
 				@rmdir( $dir );
 			}
 		}
@@ -141,9 +142,10 @@ class CF7RB_Session {
 
 			if ( is_dir( $path ) && $now - @filemtime( $path ) > 3600 ) {
 				foreach ( glob( trailingslashit( $path ) . '*' ) as $file ) {
-					@unlink( $file );
+					wp_delete_file( $file );
 				}
 
+				// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- WordPress has no native alternative for removing directories.
 				@rmdir( $path );
 			}
 		}
