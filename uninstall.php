@@ -41,14 +41,16 @@ if ( is_dir( $dir ) ) {
 	foreach ( glob( trailingslashit( $dir ) . '*' ) as $entry ) {
 		if ( is_dir( $entry ) ) {
 			foreach ( glob( trailingslashit( $entry ) . '*' ) as $file ) {
-				@unlink( $file );
+				wp_delete_file( $file );
 			}
 
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- WordPress has no native alternative for removing directories.
 			@rmdir( $entry );
 		} else {
-			@unlink( $entry );
+			wp_delete_file( $entry );
 		}
 	}
 
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- WordPress has no native alternative for removing directories.
 	@rmdir( $dir );
 }
