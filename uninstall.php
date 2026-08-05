@@ -4,7 +4,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-$form_ids = get_posts(
+$cf7rb_form_ids = get_posts(
 	array(
 		'post_type'      => 'wpcf7_contact_form',
 		'post_status'    => 'publish',
@@ -14,12 +14,13 @@ $form_ids = get_posts(
 	)
 );
 
-foreach ( (array) $form_ids as $form_id ) {
-	delete_post_meta( (int) $form_id, '_cf7rb_enabled' );
+foreach ( (array) $cf7rb_form_ids as $cf7rb_form_id ) {
+	delete_post_meta( (int) $cf7rb_form_id, '_cf7rb_enabled' );
 }
 
 global $wpdb;
 
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- deleting transient rows by pattern requires a direct query; caching does not apply during uninstall.
 $wpdb->query(
 	$wpdb->prepare(
 		"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
@@ -27,6 +28,7 @@ $wpdb->query(
 	)
 );
 
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- deleting transient rows by pattern requires a direct query; caching does not apply during uninstall.
 $wpdb->query(
 	$wpdb->prepare(
 		"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
@@ -34,23 +36,23 @@ $wpdb->query(
 	)
 );
 
-$uploads = wp_upload_dir();
-$dir     = trailingslashit( $uploads['basedir'] ) . 'review-before-send-for-contact-form-7';
+$cf7rb_uploads = wp_upload_dir();
+$cf7rb_dir     = trailingslashit( $cf7rb_uploads['basedir'] ) . 'review-before-send-for-contact-form-7';
 
-if ( is_dir( $dir ) ) {
-	foreach ( glob( trailingslashit( $dir ) . '*' ) as $entry ) {
-		if ( is_dir( $entry ) ) {
-			foreach ( glob( trailingslashit( $entry ) . '*' ) as $file ) {
-				wp_delete_file( $file );
+if ( is_dir( $cf7rb_dir ) ) {
+	foreach ( glob( trailingslashit( $cf7rb_dir ) . '*' ) as $cf7rb_entry ) {
+		if ( is_dir( $cf7rb_entry ) ) {
+			foreach ( glob( trailingslashit( $cf7rb_entry ) . '*' ) as $cf7rb_file ) {
+				wp_delete_file( $cf7rb_file );
 			}
 
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- WordPress has no native alternative for removing directories.
-			@rmdir( $entry );
+			@rmdir( $cf7rb_entry );
 		} else {
-			wp_delete_file( $entry );
+			wp_delete_file( $cf7rb_entry );
 		}
 	}
 
 	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- WordPress has no native alternative for removing directories.
-	@rmdir( $dir );
+	@rmdir( $cf7rb_dir );
 }

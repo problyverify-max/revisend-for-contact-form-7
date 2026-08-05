@@ -87,8 +87,10 @@ class CF7RB_Settings {
 				'post_status'    => 'publish',
 				'posts_per_page' => -1,
 				'fields'         => 'ids',
-				'meta_key'       => self::META_KEY,
-				'meta_value'     => '1',
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- the number of Contact Form 7 forms is small; the query runs once per page load.
+				'meta_key'   => self::META_KEY,
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- the number of Contact Form 7 forms is small; the query runs once per page load.
+				'meta_value' => '1',
 				'no_found_rows'  => true,
 			)
 		);
