@@ -49,7 +49,7 @@ class CF7RB_Ajax {
 			? array()
 			: array_keys( $validation->get_invalid_fields() );
 
-		$posted = wp_unslash( (array) $_POST );
+		$posted = self::sanitize_posted( wp_unslash( (array) $_POST ) );
 
 		$rows  = CF7RB_Renderer::build_rows( $form, $posted, array() );
 		$files = self::collect_files( $form );
@@ -57,7 +57,7 @@ class CF7RB_Ajax {
 		if ( false === $files ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'One of the uploaded files is too large or has an invalid type.', 'review-before-send-for-contact-form-7' ),
+					'message' => __( 'One of the uploaded files is too large or has an invalid type.', 'revisend-for-contact-form-7' ),
 				)
 			);
 		}
@@ -102,7 +102,7 @@ class CF7RB_Ajax {
 			$abort = true;
 
 			$submission->set_response(
-				__( 'Your submission was not confirmed. Please submit the form again using the confirmation step.', 'review-before-send-for-contact-form-7' )
+				__( 'Your submission was not confirmed. Please submit the form again using the confirmation step.', 'revisend-for-contact-form-7' )
 			);
 
 			return;
@@ -168,6 +168,18 @@ class CF7RB_Ajax {
 
 		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- invoking Contact Form 7's own documented validation hook.
 		return apply_filters( 'wpcf7_validate', $result, $tags );
+	}
+
+	private static function sanitize_posted( $posted ) {
+		$clean = array();
+
+		foreach ( (array) $posted as $key => $value ) {
+			$clean[ $key ] = is_array( $value )
+				? array_map( 'sanitize_textarea_field', $value )
+				: sanitize_textarea_field( (string) $value );
+		}
+
+		return $clean;
 	}
 
 	private static function passes_spam_checks() {
@@ -239,15 +251,39 @@ class CF7RB_Ajax {
 			}
 
 			$orig = sanitize_file_name( wp_basename( $file['name'] ) );
-			$name = wp_unique_filename( $dir, $orig );
 
-			// phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- move_uploaded_file is the only secure way to relocate an uploaded file; WordPress has no equivalent for custom upload directories.
-			if ( ! move_uploaded_file( $file['tmp_name'], trailingslashit( $dir ) . $name ) ) {
+			if ( ! function_exists( 'wp_handle_upload' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/file.php';
+			}
+
+			$upload_dir_cb = static function () use ( $dir ) {
+				return array(
+					'path'    => $dir,
+					'url'     => '',
+					'subdir'  => '',
+					'basedir' => $dir,
+					'baseurl' => '',
+					'error'   => false,
+				);
+			};
+
+			add_filter( 'upload_dir', $upload_dir_cb );
+
+			$uploaded = wp_handle_upload(
+				$file,
+				array(
+					'test_form' => false,
+				)
+			);
+
+			remove_filter( 'upload_dir', $upload_dir_cb );
+
+			if ( ! empty( $uploaded['error'] ) || empty( $uploaded['file'] ) ) {
 				return false;
 			}
 
 			$files[ $tag->name ] = array(
-				'rel'  => CF7RB_Session::rel_path( trailingslashit( $dir ) . $name ),
+				'rel'  => CF7RB_Session::rel_path( $uploaded['file'] ),
 				'orig' => $orig,
 			);
 		}

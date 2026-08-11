@@ -1,15 +1,16 @@
 <?php
 /**
- * Plugin Name:       Review Before Send for Contact Form 7
- * Plugin URI:        https://github.com/slobostep/review-before-send-for-contact-form-7
+ * Plugin Name:       Revisend for Contact Form 7
+ * Plugin URI:        https://github.com/slobostep/revisend-for-contact-form-7
  * Description:       Adds a review-and-confirm step to Contact Form 7 forms before the mail is sent. Built-in honeypot and time-trap spam protection.
- * Version:           0.1.9
+ * Version:           0.2.0
  * Requires at least: 6.7
+ * Requires Plugins:  contact-form-7
  * Requires PHP:      7.4
  * Author:            Slobodan Radosavljevic
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       review-before-send-for-contact-form-7
+ * Text Domain:       revisend-for-contact-form-7
  * Domain Path:       /languages
  */
 
@@ -17,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CF7RB_VERSION', '0.1.9' );
+define( 'CF7RB_VERSION', '0.2.0' );
 define( 'CF7RB_PLUGIN_FILE', __FILE__ );
 define( 'CF7RB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CF7RB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -54,7 +55,7 @@ function cf7rb_add_form_class( $class ) {
 
 function cf7rb_missing_cf7_notice() {
 	echo '<div class="notice notice-warning"><p>';
-	echo esc_html__( 'Review Before Send for Contact Form 7 requires the Contact Form 7 plugin to be installed and active.', 'review-before-send-for-contact-form-7' );
+	echo esc_html__( 'Revisend for Contact Form 7 requires the Contact Form 7 plugin to be installed and active.', 'revisend-for-contact-form-7' );
 	echo '</p></div>';
 }
 

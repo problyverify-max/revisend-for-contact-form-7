@@ -1,19 +1,19 @@
-# AGENTS.md — Review Before Send for Contact Form 7
+# AGENTS.md — Revisend for Contact Form 7
 
 ## Plugin Info
 
 - **Version:** 0.1.9
 - **Requires:** Contact Form 7 (active), WordPress ≥ 6.7, PHP ≥ 7.4
-- **GitHub:** https://github.com/slobostep/review-before-send-for-contact-form-7
+- **GitHub:** https://github.com/slobostep/revisend-for-contact-form-7
 - **License:** GPL-2.0-or-later
-- **Text Domain:** `review-before-send-for-contact-form-7`
+- **Text Domain:** `revisend-for-contact-form-7`
 
 ## Project Structure
 
 ```
 cf7-review-before-send/
   AGENTS.md                                 ← This file
-  review-before-send-for-contact-form-7.php ← Main plugin file (bootstrap, hooks)
+  revisend-for-contact-form-7.php ← Main plugin file (bootstrap, hooks)
   readme.txt                                ← WordPress.org readme
   uninstall.php                             ← Cleanup on uninstall
   index.php                                 ← Silence
@@ -57,20 +57,22 @@ cf7-review-before-send/
 ## Build / Deploy
 
 - No build step — pure PHP/JS/CSS
-- ZIP for WordPress.org is created from the `cf7-review-before-send/` folder
+- Local dev folder is `cf7-review-before-send/`; the ZIP must contain the
+  folder `revisend-for-contact-form-7/` (matches the plugin slug)
 - Update version in:
-  - `review-before-send-for-contact-form-7.php` (header + `CF7RB_VERSION`)
+  - `revisend-for-contact-form-7.php` (header + `CF7RB_VERSION`)
   - `readme.txt` (`Stable tag:`)
 - After version bump, create ZIP from parent directory:
-  `zip -r review-before-send-for-contact-form-7-{version}.zip cf7-review-before-send/ -x "cf7-review-before-send/.git/*" "cf7-review-before-send/.gitignore" "cf7-review-before-send/AGENTS.md"`
+  `zip -r revisend-for-contact-form-7-{version}.zip revisend-for-contact-form-7/ -x "revisend-for-contact-form-7/.git/*" "revisend-for-contact-form-7/.gitignore" "revisend-for-contact-form-7/AGENTS.md"`
 - **Windows:** do NOT use PowerShell `Compress-Archive` — it stores paths with
   backslashes and WordPress fails to extract the plugin ("Plugin file does not
-  exist"). Use Python instead:
-  `python -c "import shutil; shutil.make_archive('review-before-send-for-contact-form-7-{version}', 'zip', '.', 'cf7-review-before-send')"`
+  exist"). Use Python instead (build the staging folder `revisend-for-contact-form-7/`
+  from the dev folder, then):
+  `python -c "import shutil; shutil.make_archive('revisend-for-contact-form-7-{version}', 'zip', '.', 'revisend-for-contact-form-7')"`
 
 ## Conventions
 
 - No jQuery — vanilla JS only
-- All user-facing strings go through `__()` / `_e()` with text domain `review-before-send-for-contact-form-7`
+- All user-facing strings go through `__()` / `_e()` with text domain `revisend-for-contact-form-7`
 - No unnecessary comments in code
 - English for code, comments, commit messages

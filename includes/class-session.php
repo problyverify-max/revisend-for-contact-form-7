@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class CF7RB_Session {
 
 	const TTL = 900;
-	const DIR = 'uploads/review-before-send-for-contact-form-7';
+	const DIR = 'uploads/revisend-for-contact-form-7';
 
 	public static function create( $form_id, $rows, $files ) {
 		$token = wp_generate_password( 32, false );
@@ -55,7 +55,7 @@ class CF7RB_Session {
 			return '';
 		}
 
-		$base = trailingslashit( $basedir['basedir'] ) . 'review-before-send-for-contact-form-7';
+		$base = trailingslashit( $basedir['basedir'] ) . 'revisend-for-contact-form-7';
 		wp_mkdir_p( $base );
 
 		if ( ! wp_is_writable( $base ) ) {
