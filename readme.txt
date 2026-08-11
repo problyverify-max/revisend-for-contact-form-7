@@ -1,10 +1,10 @@
-=== Review Before Send for Contact Form 7 ===
+=== Revisend for Contact Form 7 ===
 Contributors: slobostep
 Tags: contact form 7, confirmation, review, multi-step, spam protection
 Requires at least: 6.7
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.1.9
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Adds a review-and-confirm step to Contact Form 7 forms. Visitors see a summary o
 == Description ==
 
 Contact Form 7 is the most popular form plugin on WordPress, but it sends the
-mail the moment the visitor clicks the submit button. Review Before Send for Contact Form 7
+mail the moment the visitor clicks the submit button. Revisend for Contact Form 7
 adds an optional confirmation step: after the form passes Contact Form 7's
 native validation, the visitor sees a summary of what they typed and must
 click "Confirm & Send" before the form is actually submitted. If they spot a
@@ -33,7 +33,7 @@ mistake, they can go back with "Edit".
 
 == Installation ==
 
-1. Upload the `review-before-send-for-contact-form-7` folder to `/wp-content/plugins/`.
+1. Upload the `revisend-for-contact-form-7` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the Plugins screen.
 3. Edit a Contact Form 7 form and check "Show a review step before this form is sent".
 4. Done. The form now requires confirmation before sending.
@@ -75,8 +75,8 @@ Available labels: `heading`, `intro`, `edit`, `confirm`,
 
 == Screenshots ==
 
-1. Contact Form 7 editor with the Review Before Send tab.
-2. Review Before Send per-form settings.
+1. Contact Form 7 editor with the Revisend tab.
+2. Revisend per-form settings.
 3. A standard Contact Form 7 form before submission.
 4. Native Contact Form 7 validation messages.
 5. A completed form before submission.
@@ -85,6 +85,12 @@ Available labels: `heading`, `intro`, `edit`, `confirm`,
 8. The native Contact Form 7 success message after sending.
 
 == Changelog ==
+
+= 0.2.0 =
+* Change: plugin renamed to Revisend for Contact Form 7.
+* Change: posted form data is sanitized before it is stored and displayed.
+* Change: file uploads now use wp_handle_upload().
+* Change: added "Requires Plugins: contact-form-7" header.
 
 = 0.1.9 =
 * Change: more compact mobile layout — form font scales down to 0.9em,

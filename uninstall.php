@@ -37,7 +37,7 @@ $wpdb->query(
 );
 
 $cf7rb_uploads = wp_upload_dir();
-$cf7rb_dir     = trailingslashit( $cf7rb_uploads['basedir'] ) . 'review-before-send-for-contact-form-7';
+$cf7rb_dir     = trailingslashit( $cf7rb_uploads['basedir'] ) . 'revisend-for-contact-form-7';
 
 if ( is_dir( $cf7rb_dir ) ) {
 	foreach ( glob( trailingslashit( $cf7rb_dir ) . '*' ) as $cf7rb_entry ) {
